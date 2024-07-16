@@ -1,0 +1,20 @@
+url: https://models.silero.ai/models/tts/ru/v4_ru.pt
+model_type: silero_tts
+model_id: v4_ru
+language: ru
+put_accent: True
+put_yo: True
+curr_speaker: kseniya
+speakers:
+  - aidar
+  - baya
+  - kseniya
+  - xenia
+  - eugene
+  - random
+sample_rate: 48000
+device_type: cpu
+num_model_threads: 8
+model_store_file_path: voicer/models/weights.pt
+temp_audio_folder_path: voicer/temp_audios
+clean_audio_folder: True
