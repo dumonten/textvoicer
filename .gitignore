@@ -193,5 +193,5 @@ pyrightconfig.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
-*/vosk-model-ru-0.22/
-voicer/models/weights.pt
+voicer/models/*
+voicer/temp_audios/*

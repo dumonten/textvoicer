@@ -1,21 +1,9 @@
 import concurrent.futures
 import gc
-import os
 import select
 import threading
-import time
-import tracemalloc
-import wave
-from glob import glob
 
-import nltk
-import psutil
-import pyaudio
-import sounddevice as sd
-import torch
-import torchaudio
 from loguru import logger
-from memory_profiler import profile
 
 from extracter import Extracter
 from voicer import free_resources, get_audio, get_speakers, get_speeds, play_audio
@@ -55,12 +43,13 @@ class ConsoleApp:
             while self.is_working:
                 selected_text = self.extracter.get_selected_text()
                 if selected_text == -2:
-                    logger.info("Waiting for ensurance of voicing this text...")
                     select.select([], [], [], 0.1)
                 elif selected_text == self.prev_voiced_text:
                     logger.info("Skipped, select new text.")
                     select.select([], [], [], 2)
                 elif len(selected_text):
+                    logger.info(f"Voicing text: {selected_text[-5:]}")
+
                     sentences = selected_text.strip().split(".")
                     chunk_size = max(1, len(sentences) // self.num_threads)
                     max_workers = min(len(sentences), self.num_threads)
@@ -84,6 +73,7 @@ class ConsoleApp:
                             results[i] = future.result()
 
                     if results:
+                        logger.info("Audio voicing...")
                         self.prev_voiced_text = selected_text
                         for r in results:
                             if r:

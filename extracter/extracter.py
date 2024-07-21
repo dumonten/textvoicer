@@ -24,9 +24,14 @@ class Extracter:
 
     def get_selected_text(self):
         """
-        return -1 while error
-        -2 is not a time
+        Function that retrieves the currently highlighted text.
+        It works is exclusively for Linux users and requires the prior installation of xclip.
 
+        Returns:
+        - Text (str): This returns the highlighted text.
+        - Error Code (int): In case of an error, it returns a negative integer value. Here's what the codes mean:
+            (-1) indicates an internal error.
+            (-2) suggests a need to confirm whether to voice the selected text.
         """
 
         text = ""

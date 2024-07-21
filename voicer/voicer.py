@@ -107,6 +107,7 @@ def get_audio(text, speaker=None, speed=None):
 
         del tts_audio
         gc.collect()
+        torch.cuda.empty_cache()
         return path_to_wav_audio
     except Exception as e:
         logger.error(
@@ -122,7 +123,7 @@ def play_audio(path_to_wav_audio):
 
         wave_obj = sa.WaveObject.from_wave_file(path_to_wav_audio)
         play_obj = wave_obj.play()
-        play_obj.wait_done()  # Wait until the audio has finished playing
+        play_obj.wait_done()
 
         os.remove(path_to_wav_audio)
     except Exception as e:
@@ -134,3 +135,6 @@ def play_audio(path_to_wav_audio):
 def free_resources():
     global model
     del model
+
+    gc.collect()
+    torch.cuda.empty_cache()

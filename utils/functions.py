@@ -8,6 +8,7 @@ def generate_uuid() -> str:
     Returns:
     - The generated UUID as a string.
     """
+
     # Generate a UUID
     my_uuid = uuid.uuid4()
     # Convert the UUID to a string
