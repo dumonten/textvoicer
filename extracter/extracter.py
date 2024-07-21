@@ -5,7 +5,6 @@ from loguru import logger
 
 
 class Extracter:
-
     def __init__(self, nbuff=10):
         self._buffer = []
         self._nbuff = nbuff
@@ -23,17 +22,6 @@ class Extracter:
         )
 
     def get_selected_text(self):
-        """
-        Function that retrieves the currently highlighted text.
-        It works is exclusively for Linux users and requires the prior installation of xclip.
-
-        Returns:
-        - Text (str): This returns the highlighted text.
-        - Error Code (int): In case of an error, it returns a negative integer value. Here's what the codes mean:
-            (-1) indicates an internal error.
-            (-2) suggests a need to confirm whether to voice the selected text.
-        """
-
         text = ""
         try:
             text = subprocess.check_output(

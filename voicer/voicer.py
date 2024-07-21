@@ -106,6 +106,7 @@ def get_audio(text, speaker=None, speed=None):
         change_speed(path_to_wav_audio, speed)
 
         del tts_audio
+
         gc.collect()
         torch.cuda.empty_cache()
         return path_to_wav_audio
